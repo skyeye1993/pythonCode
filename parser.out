@@ -1,0 +1,487 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> expression
+Rule 1     expression -> LPAREN expression RPAREN
+Rule 2     expression -> ATOMIC
+Rule 3     expression -> NOT expression
+Rule 4     expression -> NEXT expression
+Rule 5     expression -> GLOBAL expression
+Rule 6     expression -> FINAL expression
+Rule 7     expression -> expression CONJUNCTION expression
+Rule 8     expression -> expression DISJUNCTION expression
+Rule 9     expression -> expression UNTIL expression
+Rule 10    expression -> expression RELEASE expression
+
+Terminals, with rules where they appear
+
+ATOMIC               : 2
+CONJUNCTION          : 7
+DISJUNCTION          : 8
+FINAL                : 6
+GLOBAL               : 5
+LPAREN               : 1
+NEXT                 : 4
+NOT                  : 3
+RELEASE              : 10
+RPAREN               : 1
+UNTIL                : 9
+error                : 
+
+Nonterminals, with rules where they appear
+
+expression           : 1 3 4 5 6 7 7 8 8 9 9 10 10 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . expression
+    (1) expression -> . LPAREN expression RPAREN
+    (2) expression -> . ATOMIC
+    (3) expression -> . NOT expression
+    (4) expression -> . NEXT expression
+    (5) expression -> . GLOBAL expression
+    (6) expression -> . FINAL expression
+    (7) expression -> . expression CONJUNCTION expression
+    (8) expression -> . expression DISJUNCTION expression
+    (9) expression -> . expression UNTIL expression
+    (10) expression -> . expression RELEASE expression
+
+    LPAREN          shift and go to state 2
+    ATOMIC          shift and go to state 3
+    NOT             shift and go to state 4
+    NEXT            shift and go to state 5
+    GLOBAL          shift and go to state 6
+    FINAL           shift and go to state 7
+
+    expression                     shift and go to state 1
+
+state 1
+
+    (0) S' -> expression .
+    (7) expression -> expression . CONJUNCTION expression
+    (8) expression -> expression . DISJUNCTION expression
+    (9) expression -> expression . UNTIL expression
+    (10) expression -> expression . RELEASE expression
+
+    CONJUNCTION     shift and go to state 8
+    DISJUNCTION     shift and go to state 9
+    UNTIL           shift and go to state 10
+    RELEASE         shift and go to state 11
+
+
+state 2
+
+    (1) expression -> LPAREN . expression RPAREN
+    (1) expression -> . LPAREN expression RPAREN
+    (2) expression -> . ATOMIC
+    (3) expression -> . NOT expression
+    (4) expression -> . NEXT expression
+    (5) expression -> . GLOBAL expression
+    (6) expression -> . FINAL expression
+    (7) expression -> . expression CONJUNCTION expression
+    (8) expression -> . expression DISJUNCTION expression
+    (9) expression -> . expression UNTIL expression
+    (10) expression -> . expression RELEASE expression
+
+    LPAREN          shift and go to state 2
+    ATOMIC          shift and go to state 3
+    NOT             shift and go to state 4
+    NEXT            shift and go to state 5
+    GLOBAL          shift and go to state 6
+    FINAL           shift and go to state 7
+
+    expression                     shift and go to state 12
+
+state 3
+
+    (2) expression -> ATOMIC .
+
+    CONJUNCTION     reduce using rule 2 (expression -> ATOMIC .)
+    DISJUNCTION     reduce using rule 2 (expression -> ATOMIC .)
+    UNTIL           reduce using rule 2 (expression -> ATOMIC .)
+    RELEASE         reduce using rule 2 (expression -> ATOMIC .)
+    $end            reduce using rule 2 (expression -> ATOMIC .)
+    RPAREN          reduce using rule 2 (expression -> ATOMIC .)
+
+
+state 4
+
+    (3) expression -> NOT . expression
+    (1) expression -> . LPAREN expression RPAREN
+    (2) expression -> . ATOMIC
+    (3) expression -> . NOT expression
+    (4) expression -> . NEXT expression
+    (5) expression -> . GLOBAL expression
+    (6) expression -> . FINAL expression
+    (7) expression -> . expression CONJUNCTION expression
+    (8) expression -> . expression DISJUNCTION expression
+    (9) expression -> . expression UNTIL expression
+    (10) expression -> . expression RELEASE expression
+
+    LPAREN          shift and go to state 2
+    ATOMIC          shift and go to state 3
+    NOT             shift and go to state 4
+    NEXT            shift and go to state 5
+    GLOBAL          shift and go to state 6
+    FINAL           shift and go to state 7
+
+    expression                     shift and go to state 13
+
+state 5
+
+    (4) expression -> NEXT . expression
+    (1) expression -> . LPAREN expression RPAREN
+    (2) expression -> . ATOMIC
+    (3) expression -> . NOT expression
+    (4) expression -> . NEXT expression
+    (5) expression -> . GLOBAL expression
+    (6) expression -> . FINAL expression
+    (7) expression -> . expression CONJUNCTION expression
+    (8) expression -> . expression DISJUNCTION expression
+    (9) expression -> . expression UNTIL expression
+    (10) expression -> . expression RELEASE expression
+
+    LPAREN          shift and go to state 2
+    ATOMIC          shift and go to state 3
+    NOT             shift and go to state 4
+    NEXT            shift and go to state 5
+    GLOBAL          shift and go to state 6
+    FINAL           shift and go to state 7
+
+    expression                     shift and go to state 14
+
+state 6
+
+    (5) expression -> GLOBAL . expression
+    (1) expression -> . LPAREN expression RPAREN
+    (2) expression -> . ATOMIC
+    (3) expression -> . NOT expression
+    (4) expression -> . NEXT expression
+    (5) expression -> . GLOBAL expression
+    (6) expression -> . FINAL expression
+    (7) expression -> . expression CONJUNCTION expression
+    (8) expression -> . expression DISJUNCTION expression
+    (9) expression -> . expression UNTIL expression
+    (10) expression -> . expression RELEASE expression
+
+    LPAREN          shift and go to state 2
+    ATOMIC          shift and go to state 3
+    NOT             shift and go to state 4
+    NEXT            shift and go to state 5
+    GLOBAL          shift and go to state 6
+    FINAL           shift and go to state 7
+
+    expression                     shift and go to state 15
+
+state 7
+
+    (6) expression -> FINAL . expression
+    (1) expression -> . LPAREN expression RPAREN
+    (2) expression -> . ATOMIC
+    (3) expression -> . NOT expression
+    (4) expression -> . NEXT expression
+    (5) expression -> . GLOBAL expression
+    (6) expression -> . FINAL expression
+    (7) expression -> . expression CONJUNCTION expression
+    (8) expression -> . expression DISJUNCTION expression
+    (9) expression -> . expression UNTIL expression
+    (10) expression -> . expression RELEASE expression
+
+    LPAREN          shift and go to state 2
+    ATOMIC          shift and go to state 3
+    NOT             shift and go to state 4
+    NEXT            shift and go to state 5
+    GLOBAL          shift and go to state 6
+    FINAL           shift and go to state 7
+
+    expression                     shift and go to state 16
+
+state 8
+
+    (7) expression -> expression CONJUNCTION . expression
+    (1) expression -> . LPAREN expression RPAREN
+    (2) expression -> . ATOMIC
+    (3) expression -> . NOT expression
+    (4) expression -> . NEXT expression
+    (5) expression -> . GLOBAL expression
+    (6) expression -> . FINAL expression
+    (7) expression -> . expression CONJUNCTION expression
+    (8) expression -> . expression DISJUNCTION expression
+    (9) expression -> . expression UNTIL expression
+    (10) expression -> . expression RELEASE expression
+
+    LPAREN          shift and go to state 2
+    ATOMIC          shift and go to state 3
+    NOT             shift and go to state 4
+    NEXT            shift and go to state 5
+    GLOBAL          shift and go to state 6
+    FINAL           shift and go to state 7
+
+    expression                     shift and go to state 17
+
+state 9
+
+    (8) expression -> expression DISJUNCTION . expression
+    (1) expression -> . LPAREN expression RPAREN
+    (2) expression -> . ATOMIC
+    (3) expression -> . NOT expression
+    (4) expression -> . NEXT expression
+    (5) expression -> . GLOBAL expression
+    (6) expression -> . FINAL expression
+    (7) expression -> . expression CONJUNCTION expression
+    (8) expression -> . expression DISJUNCTION expression
+    (9) expression -> . expression UNTIL expression
+    (10) expression -> . expression RELEASE expression
+
+    LPAREN          shift and go to state 2
+    ATOMIC          shift and go to state 3
+    NOT             shift and go to state 4
+    NEXT            shift and go to state 5
+    GLOBAL          shift and go to state 6
+    FINAL           shift and go to state 7
+
+    expression                     shift and go to state 18
+
+state 10
+
+    (9) expression -> expression UNTIL . expression
+    (1) expression -> . LPAREN expression RPAREN
+    (2) expression -> . ATOMIC
+    (3) expression -> . NOT expression
+    (4) expression -> . NEXT expression
+    (5) expression -> . GLOBAL expression
+    (6) expression -> . FINAL expression
+    (7) expression -> . expression CONJUNCTION expression
+    (8) expression -> . expression DISJUNCTION expression
+    (9) expression -> . expression UNTIL expression
+    (10) expression -> . expression RELEASE expression
+
+    LPAREN          shift and go to state 2
+    ATOMIC          shift and go to state 3
+    NOT             shift and go to state 4
+    NEXT            shift and go to state 5
+    GLOBAL          shift and go to state 6
+    FINAL           shift and go to state 7
+
+    expression                     shift and go to state 19
+
+state 11
+
+    (10) expression -> expression RELEASE . expression
+    (1) expression -> . LPAREN expression RPAREN
+    (2) expression -> . ATOMIC
+    (3) expression -> . NOT expression
+    (4) expression -> . NEXT expression
+    (5) expression -> . GLOBAL expression
+    (6) expression -> . FINAL expression
+    (7) expression -> . expression CONJUNCTION expression
+    (8) expression -> . expression DISJUNCTION expression
+    (9) expression -> . expression UNTIL expression
+    (10) expression -> . expression RELEASE expression
+
+    LPAREN          shift and go to state 2
+    ATOMIC          shift and go to state 3
+    NOT             shift and go to state 4
+    NEXT            shift and go to state 5
+    GLOBAL          shift and go to state 6
+    FINAL           shift and go to state 7
+
+    expression                     shift and go to state 20
+
+state 12
+
+    (1) expression -> LPAREN expression . RPAREN
+    (7) expression -> expression . CONJUNCTION expression
+    (8) expression -> expression . DISJUNCTION expression
+    (9) expression -> expression . UNTIL expression
+    (10) expression -> expression . RELEASE expression
+
+    RPAREN          shift and go to state 21
+    CONJUNCTION     shift and go to state 8
+    DISJUNCTION     shift and go to state 9
+    UNTIL           shift and go to state 10
+    RELEASE         shift and go to state 11
+
+
+state 13
+
+    (3) expression -> NOT expression .
+    (7) expression -> expression . CONJUNCTION expression
+    (8) expression -> expression . DISJUNCTION expression
+    (9) expression -> expression . UNTIL expression
+    (10) expression -> expression . RELEASE expression
+
+    CONJUNCTION     reduce using rule 3 (expression -> NOT expression .)
+    DISJUNCTION     reduce using rule 3 (expression -> NOT expression .)
+    UNTIL           reduce using rule 3 (expression -> NOT expression .)
+    RELEASE         reduce using rule 3 (expression -> NOT expression .)
+    $end            reduce using rule 3 (expression -> NOT expression .)
+    RPAREN          reduce using rule 3 (expression -> NOT expression .)
+
+  ! CONJUNCTION     [ shift and go to state 8 ]
+  ! DISJUNCTION     [ shift and go to state 9 ]
+  ! UNTIL           [ shift and go to state 10 ]
+  ! RELEASE         [ shift and go to state 11 ]
+
+
+state 14
+
+    (4) expression -> NEXT expression .
+    (7) expression -> expression . CONJUNCTION expression
+    (8) expression -> expression . DISJUNCTION expression
+    (9) expression -> expression . UNTIL expression
+    (10) expression -> expression . RELEASE expression
+
+    CONJUNCTION     reduce using rule 4 (expression -> NEXT expression .)
+    DISJUNCTION     reduce using rule 4 (expression -> NEXT expression .)
+    UNTIL           reduce using rule 4 (expression -> NEXT expression .)
+    RELEASE         reduce using rule 4 (expression -> NEXT expression .)
+    $end            reduce using rule 4 (expression -> NEXT expression .)
+    RPAREN          reduce using rule 4 (expression -> NEXT expression .)
+
+  ! CONJUNCTION     [ shift and go to state 8 ]
+  ! DISJUNCTION     [ shift and go to state 9 ]
+  ! UNTIL           [ shift and go to state 10 ]
+  ! RELEASE         [ shift and go to state 11 ]
+
+
+state 15
+
+    (5) expression -> GLOBAL expression .
+    (7) expression -> expression . CONJUNCTION expression
+    (8) expression -> expression . DISJUNCTION expression
+    (9) expression -> expression . UNTIL expression
+    (10) expression -> expression . RELEASE expression
+
+    CONJUNCTION     reduce using rule 5 (expression -> GLOBAL expression .)
+    DISJUNCTION     reduce using rule 5 (expression -> GLOBAL expression .)
+    UNTIL           reduce using rule 5 (expression -> GLOBAL expression .)
+    RELEASE         reduce using rule 5 (expression -> GLOBAL expression .)
+    $end            reduce using rule 5 (expression -> GLOBAL expression .)
+    RPAREN          reduce using rule 5 (expression -> GLOBAL expression .)
+
+  ! CONJUNCTION     [ shift and go to state 8 ]
+  ! DISJUNCTION     [ shift and go to state 9 ]
+  ! UNTIL           [ shift and go to state 10 ]
+  ! RELEASE         [ shift and go to state 11 ]
+
+
+state 16
+
+    (6) expression -> FINAL expression .
+    (7) expression -> expression . CONJUNCTION expression
+    (8) expression -> expression . DISJUNCTION expression
+    (9) expression -> expression . UNTIL expression
+    (10) expression -> expression . RELEASE expression
+
+    CONJUNCTION     reduce using rule 6 (expression -> FINAL expression .)
+    DISJUNCTION     reduce using rule 6 (expression -> FINAL expression .)
+    UNTIL           reduce using rule 6 (expression -> FINAL expression .)
+    RELEASE         reduce using rule 6 (expression -> FINAL expression .)
+    $end            reduce using rule 6 (expression -> FINAL expression .)
+    RPAREN          reduce using rule 6 (expression -> FINAL expression .)
+
+  ! CONJUNCTION     [ shift and go to state 8 ]
+  ! DISJUNCTION     [ shift and go to state 9 ]
+  ! UNTIL           [ shift and go to state 10 ]
+  ! RELEASE         [ shift and go to state 11 ]
+
+
+state 17
+
+    (7) expression -> expression CONJUNCTION expression .
+    (7) expression -> expression . CONJUNCTION expression
+    (8) expression -> expression . DISJUNCTION expression
+    (9) expression -> expression . UNTIL expression
+    (10) expression -> expression . RELEASE expression
+
+    CONJUNCTION     reduce using rule 7 (expression -> expression CONJUNCTION expression .)
+    DISJUNCTION     reduce using rule 7 (expression -> expression CONJUNCTION expression .)
+    $end            reduce using rule 7 (expression -> expression CONJUNCTION expression .)
+    RPAREN          reduce using rule 7 (expression -> expression CONJUNCTION expression .)
+    UNTIL           shift and go to state 10
+    RELEASE         shift and go to state 11
+
+  ! UNTIL           [ reduce using rule 7 (expression -> expression CONJUNCTION expression .) ]
+  ! RELEASE         [ reduce using rule 7 (expression -> expression CONJUNCTION expression .) ]
+  ! CONJUNCTION     [ shift and go to state 8 ]
+  ! DISJUNCTION     [ shift and go to state 9 ]
+
+
+state 18
+
+    (8) expression -> expression DISJUNCTION expression .
+    (7) expression -> expression . CONJUNCTION expression
+    (8) expression -> expression . DISJUNCTION expression
+    (9) expression -> expression . UNTIL expression
+    (10) expression -> expression . RELEASE expression
+
+    CONJUNCTION     reduce using rule 8 (expression -> expression DISJUNCTION expression .)
+    DISJUNCTION     reduce using rule 8 (expression -> expression DISJUNCTION expression .)
+    $end            reduce using rule 8 (expression -> expression DISJUNCTION expression .)
+    RPAREN          reduce using rule 8 (expression -> expression DISJUNCTION expression .)
+    UNTIL           shift and go to state 10
+    RELEASE         shift and go to state 11
+
+  ! UNTIL           [ reduce using rule 8 (expression -> expression DISJUNCTION expression .) ]
+  ! RELEASE         [ reduce using rule 8 (expression -> expression DISJUNCTION expression .) ]
+  ! CONJUNCTION     [ shift and go to state 8 ]
+  ! DISJUNCTION     [ shift and go to state 9 ]
+
+
+state 19
+
+    (9) expression -> expression UNTIL expression .
+    (7) expression -> expression . CONJUNCTION expression
+    (8) expression -> expression . DISJUNCTION expression
+    (9) expression -> expression . UNTIL expression
+    (10) expression -> expression . RELEASE expression
+
+    CONJUNCTION     reduce using rule 9 (expression -> expression UNTIL expression .)
+    DISJUNCTION     reduce using rule 9 (expression -> expression UNTIL expression .)
+    UNTIL           reduce using rule 9 (expression -> expression UNTIL expression .)
+    RELEASE         reduce using rule 9 (expression -> expression UNTIL expression .)
+    $end            reduce using rule 9 (expression -> expression UNTIL expression .)
+    RPAREN          reduce using rule 9 (expression -> expression UNTIL expression .)
+
+  ! CONJUNCTION     [ shift and go to state 8 ]
+  ! DISJUNCTION     [ shift and go to state 9 ]
+  ! UNTIL           [ shift and go to state 10 ]
+  ! RELEASE         [ shift and go to state 11 ]
+
+
+state 20
+
+    (10) expression -> expression RELEASE expression .
+    (7) expression -> expression . CONJUNCTION expression
+    (8) expression -> expression . DISJUNCTION expression
+    (9) expression -> expression . UNTIL expression
+    (10) expression -> expression . RELEASE expression
+
+    CONJUNCTION     reduce using rule 10 (expression -> expression RELEASE expression .)
+    DISJUNCTION     reduce using rule 10 (expression -> expression RELEASE expression .)
+    UNTIL           reduce using rule 10 (expression -> expression RELEASE expression .)
+    RELEASE         reduce using rule 10 (expression -> expression RELEASE expression .)
+    $end            reduce using rule 10 (expression -> expression RELEASE expression .)
+    RPAREN          reduce using rule 10 (expression -> expression RELEASE expression .)
+
+  ! CONJUNCTION     [ shift and go to state 8 ]
+  ! DISJUNCTION     [ shift and go to state 9 ]
+  ! UNTIL           [ shift and go to state 10 ]
+  ! RELEASE         [ shift and go to state 11 ]
+
+
+state 21
+
+    (1) expression -> LPAREN expression RPAREN .
+
+    CONJUNCTION     reduce using rule 1 (expression -> LPAREN expression RPAREN .)
+    DISJUNCTION     reduce using rule 1 (expression -> LPAREN expression RPAREN .)
+    UNTIL           reduce using rule 1 (expression -> LPAREN expression RPAREN .)
+    RELEASE         reduce using rule 1 (expression -> LPAREN expression RPAREN .)
+    $end            reduce using rule 1 (expression -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 1 (expression -> LPAREN expression RPAREN .)
+
