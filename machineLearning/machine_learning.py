@@ -7,6 +7,8 @@ from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from sklearn.feature_selection import VarianceThreshold
 from sklearn.decomposition import PCA
 from scipy.stats import pearsonr
+from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
 import jieba
 import pandas as pd
 
@@ -194,6 +196,15 @@ def pac_demo():
     # 2、调用fit_transform
     data_new = transfer.fit_transform(data)
     print('data_new:\n',data_new)
+
+    estimator = KMeans(n_clusters=3)
+    estimator.fit(data_new)
+
+    print('----------------------------------------')
+    y_predict = estimator.predict(data_new)
+    print(y_predict)
+
+    # silhouette_score(data_new,y_predict)
 
 if __name__ == "__main__":
     # datasets_demo()
