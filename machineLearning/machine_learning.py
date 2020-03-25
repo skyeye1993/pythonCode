@@ -25,7 +25,8 @@ def datasets_demo():
     print('查看特征值的名字\n', iris.feature_names)
     print('查看特征值\n', iris.data, iris.data.shape)
 
-    # 数据集划分
+    # 数据集划分  random_state  随机数种子，如果设置了，每次分割的结果  x_train,x_test的数据都是一样的，如果不设置，每次的结果都是不一样的
+    # 将iris.data中的数据按划分规则分给x_train,x_test，将iris.target中的数据按规则划分给y_train，y_test
     x_train, x_test, y_train, y_test = train_test_split(iris.data, iris.target, test_size=0.2, random_state=22)
     print('训练集的特征值:\n', x_train, x_train.shape)
 
@@ -109,6 +110,8 @@ def count_chinese_demo2():
 def tfidf_demo():
     """
     用TF-IDF的方法进行文本特征抽取
+    TF-IDF表示词的重要性
+    TfidfVectorizer会根据指定的公式将文档中的词转换为概率表示
     :return:
     """
     data = ['一种还是一种今天很残酷，明天更残酷，后天更美好，但绝对大部分是死在明天晚上，所以每个人不要放弃今天。',
@@ -132,13 +135,14 @@ def tfidf_demo():
 def minmax_demo():
     """
     归一化
+    MinMaxScaler：将数据矩阵缩放到[0,1]之间（将每一列数据做归一化处理）
     :return:
     """
     # 1、获取数据
     data = pd.read_csv("dating.txt")  # 详见day1视频12
     data = data.iloc[:, :3]
-    # 2、实例化一个转换器
-    transfer = MinMaxScaler()
+    # 2、实例化一个转换器  feature_range=[2,3]：表示特征值在2到3之间
+    transfer = MinMaxScaler(feature_range=[2, 3])
     # 3、调用fit_transform
     data_new = transfer.fit_transform(data)
     print(data_new)
@@ -147,13 +151,14 @@ def minmax_demo():
 def stand_demo():
     """
     标准化
+    经过处理后的数据均值为0，标准差为1
     :return:
     """
     # 1、获取数据
     data = pd.read_csv("dating.txt")  # 详见day1视频13
     data = data.iloc[:, :3]
     # 2、实例化一个转换器
-    transfer = MinMaxScaler()
+    transfer = StandardScaler()
     # 3、调用fit_transform
     data_new = transfer.fit_transform(data)
     print(data_new)
@@ -161,7 +166,7 @@ def stand_demo():
 
 def variance_demo():
     """
-    过滤地特征
+    去掉取值变化小的特征（删除低方差特征）
     :return:
     """
     # 1、获取数据
@@ -214,6 +219,7 @@ if __name__ == "__main__":
     # cut_word('我爱北京天安门')
     # count_chinese_demo2()
     # tfidf_demo()
+    # minmax_demo()
     # stand_demo()
     # variance_demo()
     pac_demo()
