@@ -27,12 +27,12 @@ def knn_iris():
     x_train, x_test, y_train, y_test = train_test_split(iris.data, iris.target, random_state=6)
     # 3、特征工程：标准化
     transfer = StandardScaler()
-    x_train = transfer.fit_transform(x_train)
-    x_test = transfer.transform(x_test)
+    x_train = transfer.fit_transform(x_train)  # 此步骤已经把x_train中的平均值、标准差放入transfer
+    x_test = transfer.transform(x_test)  # 此处用的是x_train的平均值、标准差，然后对x_test数据进行转换
 
     # 4、KNN算法预估器
     estimator = KNeighborsClassifier(n_neighbors=3)
-    estimator.fit(x_train, y_train)
+    estimator.fit(x_train, y_train)  # 将特征值和目标值进行训练，生成模型
 
     # 5、模型评估
     # 方法1：直接比对真实值和预测值
@@ -60,11 +60,16 @@ def knn_iris_gscv():
     x_test = transfer.transform(x_test)
 
     # 4、KNN算法预估器
-    estimator = KNeighborsClassifier(n_neighbors=3)
+    estimator = KNeighborsClassifier()
 
     # 加入网格搜索和交叉验证
     # 参数准备
+    """
+    网格搜索：穷举搜索：在所有候选的参数选择中，通过循环遍历，尝试每一种可能性，表现最好的参数就是最终的结果。其原理就像是在数组里找最大值。
+    如下n_neighbors，会依次去遍历1到11这几个数，得到最优的记过
+    """
     param_dict = {'n_neighbors': [1, 3, 4, 5, 7, 9, 11]}
+    # cv:交叉验证(cross validation，源码中有介绍)，把所有的数据分成10份，9份为训练集，1份为测试集，进行训练，重复循环10次，保证每一份都会被当做测试集，最后成功率取平均数
     estimator = GridSearchCV(estimator, param_grid=param_dict, cv=10)
     estimator.fit(x_train, y_train)
 
@@ -183,7 +188,7 @@ def decision_iris():
     x_train, x_test, y_train, y_test = train_test_split(iris.data, iris.target, random_state=22)
 
     # 3、决策树评估器
-    estimator = DecisionTreeClassifier(criterion='entropy')
+    estimator = DecisionTreeClassifier(criterion='entropy') # entropy 信息增益的熵
     estimator.fit(x_train, y_train)
 
     # 4、模型评估
@@ -292,5 +297,5 @@ if __name__ == '__main__':
     # facebook()
     # nb_new()
     # decision_iris()
-    # titanic_demo()
-    titanic_tree_demo()
+    titanic_demo()
+    # titanic_tree_demo()
