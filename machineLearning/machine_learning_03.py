@@ -11,9 +11,10 @@ from sklearn.externals import joblib
 import pandas as pd
 import numpy as np
 
-pd.set_option('display.max_rows', 10000)
-pd.set_option('display.max_columns', 100)
+pd.set_option('display.max_columns',1000)
 pd.set_option('display.width', 1000)
+pd.set_option('display.max_colwidth',1000)
+pd.set_option('display.max_rows', 1000)
 
 
 def linear1():
@@ -35,7 +36,7 @@ def linear1():
     estimator = LinearRegression()
     estimator.fit(x_train, y_train)
     # 5、得出模型
-    print('正规方程权重系数：\n', estimator.coef_)
+    print('正规方程权重系数：\n', estimator.coef_)  # 因为x_train的数据中又13列，所以对每一列加了一个线性参数，所以总的权重系数的个数为13
     print('正规方程偏置为：\n', estimator.intercept_)
     # 6、模型评估
     y_predict = estimator.predict(x_test)
@@ -74,7 +75,7 @@ def linear2():
 
 def linear3():
     """
-    岭回归对波士顿放假进行预测
+    岭回归对波士顿放假进行预测，岭回归主要是用于过拟合和欠拟合的使用
     :return:
     """
     # 1、获取数据
@@ -89,13 +90,13 @@ def linear3():
     x_test = transfer.transform(x_test)
 
     # 4、预估器
-    estimator = Ridge(max_iter=100)
-    estimator.fit(x_train, y_train)
+    # estimator = Ridge(max_iter=100)
+    # estimator.fit(x_train, y_train)
 
     # 保存模型
     # joblib.dump(estimator,'my_ridge.pkl')
     # 加载模型
-    # estimator = joblib.load('my_ridge.pkl')
+    estimator = joblib.load('my_ridge.pkl')
     # 5、得出模型
     print('岭回归权重系数：\n', estimator.coef_)
     print('岭回归偏置为：\n', estimator.intercept_)

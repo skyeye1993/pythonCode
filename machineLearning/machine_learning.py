@@ -202,7 +202,7 @@ def pac_demo():
     data_new = transfer.fit_transform(data)
     print('data_new:\n',data_new)
 
-    estimator = KMeans(n_clusters=3)
+    estimator = KMeans(n_clusters=3)  #聚类操作
     estimator.fit(data_new)
 
     print('----------------------------------------')
