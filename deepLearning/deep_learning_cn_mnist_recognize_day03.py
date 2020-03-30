@@ -131,7 +131,7 @@ if __name__ == '__main__':
 
     # 1、准备数据
     x = tf.placeholder(tf.float32, shape=[None, 20, 80, 3])
-    y_true = tf.placeholder(tf.float32, shape=[None, 4 * 26])
+    y_true = tf.placeholder(tf.float32, shape=[None, 4 * 26])   # 4个字母  共有26个字母，使用onehot编码得到26位
 
     # 2、构建模型
     y_predict = create_model(x)
@@ -165,7 +165,7 @@ if __name__ == '__main__':
             labels = filename2label(filename_value, csv_data)
             # 将标签值转换成one-hot编码
             labels_value = tf.reshape(tf.one_hot(labels, depth=26),[-1,4*26]).eval()
-            _,error,accuracy_value = sess.run([optimizer, loss, accuracy],feed_dict={x:image_value,y_true:labels_value})
+            _,error, accuracy_value = sess.run([optimizer, loss, accuracy],feed_dict={x:image_value,y_true:labels_value})
             print('%d次训练后损失为%f，准确率为%f'%(i+1,error,accuracy_value))
         # 回收线程
         coord.request_stop()

@@ -55,9 +55,9 @@ def graph_demo():
         a_new = tf.constant(20)
         b_new = tf.constant(30)
         c_new = a_new + b_new
-        print('a_new：\n', a_t)
-        print('b_new：\n', b_t)
-        print('c_new：\n', c_t)
+        print('a_new：\n', a_new)
+        print('b_new：\n', b_new)
+        print('c_new：\n', c_new)
         print('a_new：\n', a_new.graph)
         print('b_new：\n', b_new.graph)
         print('c_new：\n', c_new.graph)
@@ -142,7 +142,7 @@ def tensor_demo():
     # 更新形状未确定的部分
     # a_ph.set_shape([2,2])
     # b_ph.set_shape([2,10])
-    a_ph_reshape = tf.reshape(a_ph, shape=[1, 2, 3])
+    a_ph_reshape = tf.reshape(a_ph, shape=[2, 2, 3])
     print('a_ph_reshape:\n', a_ph_reshape)
 
 
@@ -180,13 +180,13 @@ def linear_regression():
     """
     with tf.variable_scope('prepare_data'):
         # 1) 准备数据
-        X = tf.random_normal(shape=[100, 1])
-        y_true = tf.matmul(X, [[0.8]]) + 0.7
+        X = tf.random_normal(shape=[100, 1])  # 形状100行1列
+        y_true = tf.matmul(X, [[0.8]]) + 0.7  # 真实值 0.8X+0.7
 
     with tf.variable_scope('create_model'):
         # 2) 构造模型
         # 定义模型参数 用变量
-        weights = tf.Variable(initial_value=tf.random_normal(shape=[1, 1]))
+        weights = tf.Variable(initial_value=tf.random_normal(shape=[1, 1]))  # 1行1列，其实就是一个数，【100,1】*【1,1】=【100，1】
         bias = tf.Variable(initial_value=tf.random_normal(shape=[1, 1]))
         y_predict = tf.matmul(X, weights) + bias
 
@@ -198,13 +198,14 @@ def linear_regression():
         # 4) 优化损失
         optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.01).minimize(error)
 
+    # 增加变量显示
     # 2_收集变量
-    tf.summary.scalar('error', error)
-    tf.summary.histogram('weights', weights)
+    tf.summary.scalar('error', error) # 收集对于损失函数和准确率等单只变量，name为变量的名字，tensor为值
+    tf.summary.histogram('weights', weights) # 收集高维度（例如m*n矩阵）的变量参数
     tf.summary.histogram('bias', bias)
 
     # 3_合并变量
-    merged = tf.summary.merge_all()
+    merged = tf.summary.merge_all() # 运行合并，每次都需要运行
 
     saver = tf.train.Saver()
 
@@ -216,7 +217,7 @@ def linear_regression():
         # 初始化变量
         sess.run(init)
 
-        # 1_创建事件文件]
+        # 1_创建事件文件
         file_writer = tf.summary.FileWriter('./tmp/linear', graph=sess.graph)
 
         # 查看初始化模型参数之后的值
@@ -233,10 +234,10 @@ def linear_regression():
 
             # 保存模型
             if i % 10 == 0:
-                saver.save(sess, './tmp/model/my_linear.ckpt')
+                saver.save(sess, './tmp/model/my_linear.ckpt')  # 保存模型
 
         if os.path.exists('./tmp/model/checkpoint'):
-            saver.restore(sess,'./tmp/model/my_linear.ckpt')
+            saver.restore(sess,'./tmp/model/my_linear.ckpt')  # 加载模型
         print("训练后模型参数为：权重%f，偏置%f，损失为%f" % (weights.eval(), bias.eval(), error.eval()))
 
 # 1）定义命令行参数
@@ -272,6 +273,6 @@ if __name__ == '__main__':
     # session_demo()
     # tensor_demo()
     # variable_demo()
-    # linear_regression()
+    linear_regression()
     # command_demo()
-    tf.app.run()
+    # tf.app.run()

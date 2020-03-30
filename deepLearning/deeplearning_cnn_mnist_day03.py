@@ -1,7 +1,5 @@
 import tensorflow as tf
-import os
 from tensorflow.examples.tutorials.mnist import input_data
-from tensorflow.contrib.slim.python.slim.nets.inception_v3 import inception_v3_base
 
 
 # 1、利用数据，在训练的时候实时提供数据
@@ -28,15 +26,15 @@ def create_model(x):
         # 将x[None, 784]形状进行修改
         input_x = tf.reshape(x, shape=[-1, 28, 28, 1])  # -1：不确定需要载入多少图片  28*28   1：通道
         # 定义filter和偏置
-        conv1_weights = create_weights(shape=[5, 5, 1, 32])
+        conv1_weights = create_weights(shape=[5, 5, 1, 32])  # 5:高  5:宽  32：filter数量
         conv1_bias = create_weights(shape=[32])
-        conv1_x = tf.nn.conv2d(input=input_x, filter=conv1_weights, strides=[1, 1, 1, 1], padding="SAME") + conv1_bias
+        conv1_x = tf.nn.conv2d(input=input_x, filter=conv1_weights, strides=[1, 1, 1, 1], padding="SAME") + conv1_bias  # strides:步长   same:越过边缘取样
 
         # 激活层
         relu1_x = tf.nn.relu(conv1_x)
 
         # 池化层
-        pool1_x = tf.nn.max_pool(value=relu1_x, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding="SAME")
+        pool1_x = tf.nn.max_pool(value=relu1_x, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding="SAME")  # 池化层窗口大小2，步长也为2
 
     # 2）第二个卷积大层
     with tf.variable_scope("conv2"):
@@ -57,7 +55,7 @@ def create_model(x):
     with tf.variable_scope("full_connection"):
         # [None, 7, 7, 64]->[None, 7 * 7 * 64]
         # [None, 7 * 7 * 64] * [7 * 7 * 64, 10] = [None, 10]
-        x_fc = tf.reshape(pool2_x, shape=[-1, 7 * 7 * 64])
+        x_fc = tf.reshape(pool2_x, shape=[-1, 7 * 7 * 64])   # 输出形状
         weights_fc = create_weights(shape=[7 * 7 * 64, 10])
         bias_fc = create_weights(shape=[10])
         y_predict = tf.matmul(x_fc, weights_fc) + bias_fc

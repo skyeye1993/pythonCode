@@ -11,8 +11,8 @@ class Cifar(object):
         self.channels = 3
 
         # 字节数
-        self.image_bytes = self.height * self.width * self.channels
-        self.label_bytes = 1
+        self.image_bytes = self.height * self.width * self.channels # 特征值大小
+        self.label_bytes = 1   # 目标值大小
         self.all_bytes = self.label_bytes + self.image_bytes
 
     def read_and_decode(self, file_list):
@@ -147,13 +147,13 @@ if __name__ == '__main__':
     # 实例化Cifar
     cifar = Cifar()
 
-    # file_name = os.listdir('cifar-10-batches-bin')
-    # print('file_name:\n', file_name)
-    # # 构造文件名路径列表
-    # file_list = [os.path.join('cifar-10-batches-bin', file) for file in file_name if file[-3:] == 'bin']
-    # print('file_list:\n', file_list)
-    #
-    # image_batch, label_batch = cifar.read_and_decode(file_list)
-    # cifar.write_to_tfrecords(image_batch, label_batch)
+    file_name = os.listdir('cifar-10-batches-bin')
+    print('file_name:\n', file_name)
+    # 构造文件名路径列表
+    file_list = [os.path.join('cifar-10-batches-bin', file) for file in file_name if file[-3:] == 'bin']
+    print('file_list:\n', file_list)
+
+    image_batch, label_batch = cifar.read_and_decode(file_list)
+    cifar.write_to_tfrecords(image_batch, label_batch)
 
     cifar.read_tfrecords()

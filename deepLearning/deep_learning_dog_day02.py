@@ -25,7 +25,7 @@ def picture_read(filelist):
     print('image_resized_before:\n', image_resized)
 
     # 静态形状修改
-    image_resized.set_shape([200, 200, 3])
+    image_resized.set_shape([200, 200, 3])   #表示通道数，rgb三原色，所以是3
     print('image_after:\n',image_resized)
 
     # 3、批处理
