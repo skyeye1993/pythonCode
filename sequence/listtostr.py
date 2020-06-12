@@ -6,7 +6,7 @@ def listtostr(list):
         return result
     """
     result = str(list).strip('[]').replace(', ', '')   # 去除头尾在 [] 中出现的字符
-    result = str(list)[1:-1].replace(', ', '')   # 1第一个位置   -1最后一个位置
+    result = str(list)[1:-1].replace(', ', '')   # 1第一个位置   -1最后第二个位置
     return result
 
 

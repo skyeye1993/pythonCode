@@ -37,7 +37,7 @@ def dict_demo():
     :return:
     """
     data = [{'city': '北京', 'temperature': 100}, {'city': '上海', 'temperature': 80}, {'city': '深圳', 'temperature': 60}]
-    transfer = DictVectorizer(sparse=False)
+    transfer = DictVectorizer(sparse=False)  # 是否转换为稀疏矩阵
     data_new = transfer.fit_transform(data)
     print('data_new\n', data_new)
     print('特征名称\n', transfer.get_feature_names())
@@ -113,6 +113,14 @@ def tfidf_demo():
     TF-IDF表示词的重要性
     TfidfVectorizer会根据指定的公式将文档中的词转换为概率表示
     :return:
+    """
+    """
+    TF-IDF是一种统计方法，用以评估一字词对于一个文件集或一个语料库中的其中一份文件的重要程度。
+    字词的重要性随着它在文件中出现的次数成正比增加，但同时会随着它在语料库中出现的频率成反比下降。 
+    假如一篇文件的总词语数是100个，而词语“母牛”出现了3次，那么“母牛”一词在该文件中的词频就是3/100=0.03。
+    一个计算文件频率 (IDF) 的方法是文件集里包含的文件总数除以测定有多少份文件出现过“母牛”一词。
+    所以，如果“母牛”一词在1,000份文件出现过，而文件总数是10,000,000份的话，其逆向文件频率就是 lg(10,000,000 / 1,000)=4。
+    最后的TF-IDF的分数为0.03 * 4=0.12。   
     """
     data = ['一种还是一种今天很残酷，明天更残酷，后天更美好，但绝对大部分是死在明天晚上，所以每个人不要放弃今天。',
             '我们看到的从很远信息来的光是在几百万年之前发出的，这样当我们看到宇宙是，我们是在看它的过去',

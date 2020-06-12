@@ -10,6 +10,8 @@ from sklearn.metrics import roc_auc_score
 from sklearn.externals import joblib
 import pandas as pd
 import numpy as np
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
 
 pd.set_option('display.max_columns',1000)
 pd.set_option('display.width', 1000)
@@ -169,5 +171,5 @@ if __name__ == '__main__':
     # linear1()
     # 梯度下降
     # linear2()
-    linear3()
-    # cancer_demo()
+    # linear3()
+    cancer_demo()

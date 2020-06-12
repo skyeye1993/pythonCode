@@ -82,7 +82,7 @@ def full_connected_mnist():
     # 3、softmax回归以及交叉熵损失计算
     with tf.variable_scope("softmax_crossentropy"):
         # labels:真实值 [None, 10]  one_hot
-        # logits:全脸层的输出[None,10]
+        # logits:全连接层的输出[None,10]
         # 返回每个样本的损失组成的列表
         loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=y_true, logits=y_predict))
 

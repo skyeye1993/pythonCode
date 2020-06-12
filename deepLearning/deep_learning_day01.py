@@ -188,11 +188,12 @@ def linear_regression():
         # 定义模型参数 用变量
         weights = tf.Variable(initial_value=tf.random_normal(shape=[1, 1]))  # 1行1列，其实就是一个数，【100,1】*【1,1】=【100，1】
         bias = tf.Variable(initial_value=tf.random_normal(shape=[1, 1]))
+        # tf.matmul(X, weights)的形状是 100*1 ， 而bias的形状是1*1  两者相加的意思是将100*1 的每一行都加上bias，这个机制在深度学习中称为广播机制   
         y_predict = tf.matmul(X, weights) + bias
 
     with tf.variable_scope('loss_function'):
         # 3) 构造损失函数
-        error = tf.reduce_mean(tf.square(y_predict - y_true))
+        error = tf.reduce_mean(tf.abs(y_predict - y_true))
 
     with tf.variable_scope('optimizer'):
         # 4) 优化损失
@@ -204,7 +205,7 @@ def linear_regression():
     tf.summary.histogram('weights', weights) # 收集高维度（例如m*n矩阵）的变量参数
     tf.summary.histogram('bias', bias)
 
-    # 3_合并变量
+        # 3_合并变量
     merged = tf.summary.merge_all() # 运行合并，每次都需要运行
 
     saver = tf.train.Saver()
@@ -224,7 +225,7 @@ def linear_regression():
         print('训练前模型参数为：权重%f，偏置%f，损失为%f' % (weights.eval(), bias.eval(), error.eval()))
 
         # 开始训练
-        for i in range(100):
+        for i in range(1000):
             sess.run(optimizer)
             print("训练前模型参数为：权重%f，偏置%f，损失为%f" % (weights.eval(), bias.eval(), error.eval()))
             # 运行合并变量操作

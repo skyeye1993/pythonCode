@@ -293,9 +293,9 @@ def titanic_tree_demo():
 
 if __name__ == '__main__':
     # knn_iris()
-    # knn_iris_gscv()
+    knn_iris_gscv()
     # facebook()
     # nb_new()
     # decision_iris()
-    titanic_demo()
+    # titanic_demo()
     # titanic_tree_demo()

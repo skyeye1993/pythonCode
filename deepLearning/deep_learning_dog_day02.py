@@ -55,3 +55,4 @@ if __name__ == '__main__':
     filename = os.listdir('./dog')
     filelist = [os.path.join('./dog/', file) for file in filename]
     picture_read(filelist)
+

@@ -5,7 +5,7 @@ def mystrip(src, chars=' '):
         if chars.find(i) == -1:
             break
         s_index += 1
-    for i in src[::-1]:
+    for i in src[::-1]:  # 从后往前
         if chars.find(i) == -1:
             break
         e_index -= 1
