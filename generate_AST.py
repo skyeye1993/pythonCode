@@ -30,6 +30,7 @@ def get_parser():
     t_LPAREN  = r'\('
     t_RPAREN  = r'\)'
 
+
     # Define a rule so we can track line numbers
     def t_newline(t):
         r'\n+'
