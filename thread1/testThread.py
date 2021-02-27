@@ -3,7 +3,7 @@ from threading import Thread
 
 def thread_func():
     print('call thread_func')
-    while (True):
+    while True:
         pass
 
 
@@ -16,3 +16,4 @@ def create_thread():
 if __name__ == '__main__':
     t = create_thread()
     t.join()
+    print(111)
